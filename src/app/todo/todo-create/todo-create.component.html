@@ -1,0 +1,30 @@
+<mat-accordion>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header >
+             Add New Task
+        </mat-expansion-panel-header>
+        <mat-card>
+            <form (submit)="onAddTask(taskForm)" #taskForm="ngForm">
+                <mat-form-field>
+                    <input 
+                    matInput
+                    type="text"
+                    name= "task"
+                    ngModel
+                    required 
+                    placeholder="Todo Task"
+                    #task="ngModel">
+                    <mat-error *ngIf="task.invalid">Please Enter appropriate task.</mat-error>
+                </mat-form-field>
+        
+                <button 
+                mat-raised-button
+                color="accent"
+                type="submit">
+                    Add Task
+                </button>
+            </form>
+        </mat-card>
+    </mat-expansion-panel>
+</mat-accordion>
+
