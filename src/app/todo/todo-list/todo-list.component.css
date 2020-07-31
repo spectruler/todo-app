@@ -1,3 +1,16 @@
 table {
     width: 100%;
 }
+
+:host{
+    display: block;
+    margin-top: 1rem;
+}
+
+mat-spinner{
+    margin: auto;   
+}
+
+.info-text{
+    text-align: center;
+}

@@ -1,10 +1,12 @@
-<mat-accordion>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+<mat-accordion *ngIf="!isLoading">
     <mat-expansion-panel>
         <mat-expansion-panel-header >
              Add New Task
         </mat-expansion-panel-header>
         <mat-card>
-            <form (submit)="onAddTask(taskForm)" #taskForm="ngForm">
+            <form (submit)="onSaveTask(taskForm)" #taskForm="ngForm">
                 <mat-form-field>
                     <input 
                     matInput

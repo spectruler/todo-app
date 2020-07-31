@@ -14,15 +14,18 @@ export class ToDoListComponent implements OnInit, OnDestroy{
     displayedColumns: string[] = ['task','complete','actions']
     // tasks : ToDo[] = [{id: null, task: 'This is task1', complete: true}];
     tasks: ToDo[] = [];
+    isLoading = false;
 
     private todosSub: Subscription;
 
     constructor(public todosService: ToDoService){}
 
     ngOnInit(){
+        this.isLoading = true;
         this.todosService.getTasks();
          this.todosSub = this.todosService.getTaskUpdateListener()
          .subscribe((todos: ToDo[])=>{
+             this.isLoading = false;
             this.tasks = todos;
          });
          console.log(this.tasks)

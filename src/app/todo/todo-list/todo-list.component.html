@@ -1,4 +1,6 @@
-<table mat-table [dataSource]="tasks" class="mat-elevation-z8" >
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+
+<table mat-table [dataSource]="tasks" class="mat-elevation-z8" *ngIf="tasks.length > 0 && !isLoading">
     <!-- Position Column -->
     <ng-container matColumnDef="task">
       <th mat-header-cell *matHeaderCellDef> Task. </th>
@@ -30,3 +32,5 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+<p class="info-text mat-body-1"*ngIf="tasks.length <= 0">No Tasks exist yet!</p>

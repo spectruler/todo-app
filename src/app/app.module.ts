@@ -8,7 +8,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button'; 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatTableModule, MatTable } from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
+import { MatProgressSpinnerModule  } from '@angular/material/progress-spinner';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,13 +17,17 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ToDoCreateComponent } from './todo/todo-create/todo-create.component';
 import { ToDoListComponent } from './todo/todo-list/todo-list.component'; 
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ToDoCreateComponent,
-    ToDoListComponent
+    ToDoListComponent,
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +40,7 @@ import { ToDoListComponent } from './todo/todo-list/todo-list.component';
     MatToolbarModule,
     MatExpansionModule,
     MatTableModule,
+    MatProgressSpinnerModule,
     HttpClientModule
   ],
   providers: [],

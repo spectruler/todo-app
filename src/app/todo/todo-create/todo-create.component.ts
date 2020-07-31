@@ -10,10 +10,10 @@ import { ToDoService } from '../todo.service';
 })
 export class ToDoCreateComponent{
 
+    isLoading = false;
     constructor(public todoService: ToDoService){}
 
-    newPost = " No Content "
-    onAddTask(form: NgForm){
+    onSaveTask(form: NgForm){
         if(form.invalid){
             /// if invalid return back 
             return;
