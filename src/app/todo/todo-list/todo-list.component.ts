@@ -28,7 +28,12 @@ export class ToDoListComponent implements OnInit, OnDestroy{
              this.isLoading = false;
             this.tasks = todos;
          });
-         console.log(this.tasks)
+        //  console.log(this.tasks)
+    }
+
+    updateComplete(id: string, event){
+        // console.log( event.target.checked);
+        this.todosService.updateComplete(id,event.target.checked);
     }
 
     onDelete(todoId: string){

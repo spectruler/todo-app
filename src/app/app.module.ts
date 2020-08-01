@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule } from '@angular/material/input';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button'; 
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -17,14 +17,17 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ToDoCreateComponent } from './todo/todo-create/todo-create.component';
 import { ToDoListComponent } from './todo/todo-list/todo-list.component'; 
+import { ToDoEditComponent } from './todo/todo-edit/todo-edit.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { AuthInterceptor } from './auth/auth-interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ToDoCreateComponent,
+    ToDoEditComponent,
     ToDoListComponent,
     SignupComponent,
     LoginComponent
@@ -43,7 +46,11 @@ import { SignupComponent } from './auth/signup/signup.component';
     MatProgressSpinnerModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

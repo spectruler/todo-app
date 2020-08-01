@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { ToDoService } from '../todo.service';
+import { ToDo } from '../todo.model';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
     selector: 'app-todo-create',
@@ -9,8 +11,8 @@ import { ToDoService } from '../todo.service';
     styleUrls: ['./todo-create.component.css']
 })
 export class ToDoCreateComponent{
-
     isLoading = false;
+    private taskId: string;
     constructor(public todoService: ToDoService){}
 
     onSaveTask(form: NgForm){
@@ -18,8 +20,9 @@ export class ToDoCreateComponent{
             /// if invalid return back 
             return;
         }
-        // add task in task service
+        this.isLoading = true;
         this.todoService.addTask(form.value.task);
+        // add task in task service
         form.resetForm(); // reset form inputs 
     }
 }

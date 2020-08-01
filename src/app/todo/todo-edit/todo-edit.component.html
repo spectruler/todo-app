@@ -1,0 +1,24 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-card *ngIf="!isLoading">
+    <form (submit)="onSaveTask(taskForm)" #taskForm="ngForm">
+        <mat-form-field>
+            <input 
+            matInput
+            type="text"
+            name= "task"
+            [ngModel]="todo.task"
+            required 
+            placeholder="Todo Task"
+            #task="ngModel">
+            <mat-error *ngIf="task.invalid">Please Enter appropriate task.</mat-error>
+        </mat-form-field>
+        <button 
+        mat-raised-button
+        color="accent"
+        type="submit">
+            Update
+        </button>
+    </form>
+</mat-card>
+
+
