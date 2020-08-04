@@ -27,7 +27,7 @@ export class AuthService{
 
     createUser(username: string, password: string){
         const authData: AuthData = {username: username, password: password}
-        this.http.post("http://localhost:5000/users/signup", authData)
+        this.http.post("users/signup", authData)
         .subscribe(response => {
             console.log(response);
             this.router.navigate(['/login']);
@@ -36,7 +36,7 @@ export class AuthService{
 
     login(username: string, password: string){
         const authData: AuthData = {username: username, password: password}
-        this.http.post<{token: string, expiresIn: number}>("http://localhost:5000/users/login", authData)
+        this.http.post<{token: string, expiresIn: number}>("users/login", authData)
         .subscribe(response => {
             const token= response.token;
             this.token = token;
@@ -71,7 +71,7 @@ export class AuthService{
     }
 
     logout(){
-        this.http.get("http://localhost:5000/users/logout")
+        this.http.get("users/logout")
         .subscribe(response => {
             console.log(response);
         })

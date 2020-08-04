@@ -15,7 +15,7 @@ export class ToDoService{
 
     getTasks(){
         // get all uncompleted tasks
-        this.http.get('http://localhost:5000/todos/')
+        this.http.get('todos/')
         .pipe(map((postData:any) => {
             console.log(postData);
             return postData.map(t => {
@@ -39,13 +39,13 @@ export class ToDoService{
     getTask(id: string){
         // get specific task
         return this.http.get<{_id: string, task: string, complete:boolean}>
-        ("http://localhost:5000/todos/"+id)
+        ("todos/"+id)
     }
 
     addTask( task: string){
         // create new task
         const todo: ToDo = {id: null, task: task, complete:false};
-        this.http.post<{todoId:string}>('http://localhost:5000/todos/add',todo)
+        this.http.post<{todoId:string}>('todos/add',todo)
         .subscribe((responseData) => {
             const ids = responseData.todoId;
             todo.id = ids;
@@ -58,7 +58,7 @@ export class ToDoService{
     updateTask(id: string, task: string){
         // update task
         const todo = {id:id, task: task, complete: false}
-        this.http.put('http://localhost:5000/todos/edit/'+id,{
+        this.http.put('todos/edit/'+id,{
             task:todo.task
         })
         .subscribe(response => {
@@ -75,7 +75,7 @@ export class ToDoService{
     updateComplete(id:string, complete: boolean){
         // update that task is completed 
         const todo = {id:id, task: '', complete: complete}
-        this.http.put('http://localhost:5000/todos/edit/'+id,{
+        this.http.put('todos/edit/'+id,{
             complete:todo.complete
         })
         .subscribe(response => {
@@ -87,7 +87,7 @@ export class ToDoService{
 
     deleteTask(taskId: string){
         // delete specified task
-        this.http.delete('http://localhost:5000/todos/remove/'+taskId)
+        this.http.delete('todos/remove/'+taskId)
         .subscribe(()=>{
             const updatedTasks = this.todos.filter(todo => todo.id !== taskId);
             this.todos = updatedTasks;
